@@ -3,6 +3,7 @@ package com.RB.RecipeBuildr.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class Recipe {
     boolean isVegan;
     boolean isVegetarian;
     Collection<Ingredient> ingredients;
-    Collection<String> steps;
+    ArrayList<String> steps;
 
     public Recipe(String imgUrl, boolean isVegan, boolean isVegetarian, Ingredient...ingredients) {
         this.imgUrl = imgUrl;
