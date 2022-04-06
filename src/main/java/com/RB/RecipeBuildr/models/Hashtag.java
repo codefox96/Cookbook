@@ -3,6 +3,7 @@ package com.RB.RecipeBuildr.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.util.Collection;
 import java.util.List;
 
@@ -12,6 +13,7 @@ public class Hashtag {
     @GeneratedValue
     Long id;
     String name;
+    @ManyToMany
     Collection<Recipe> recipes;
 
     public Hashtag(String name, Recipe...recipes) {

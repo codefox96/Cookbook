@@ -3,6 +3,8 @@ package com.RB.RecipeBuildr.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -12,6 +14,8 @@ public class Ingredient {
     Long id;
     String name;
     String imgUrl;
+    @ManyToMany
+    Collection<Recipe> recipes;
 
     public Ingredient(String name, String imgUrl) {
         this.name = name;
@@ -32,4 +36,7 @@ public class Ingredient {
         return imgUrl;
     }
 
+    public Collection<Recipe> getRecipes() {
+        return recipes;
+    }
 }

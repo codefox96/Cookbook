@@ -1,8 +1,6 @@
 package com.RB.RecipeBuildr.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -15,7 +13,12 @@ public class Recipe {
     String imgUrl;
     boolean isVegan;
     boolean isVegetarian;
+    @ManyToMany(mappedBy = "recipes")
     Collection<Ingredient> ingredients;
+    @ManyToMany(mappedBy = "recipes")
+    Collection<Hashtag> hashtags;
+    @Embedded
+    Collection<Comment> comments;
     ArrayList<String> steps;
 
     public Recipe(String imgUrl, boolean isVegan, boolean isVegetarian, Ingredient...ingredients) {
@@ -51,6 +54,14 @@ public class Recipe {
 
     public Collection<Ingredient> getIngredients() {
         return ingredients;
+    }
+
+    public Collection<Hashtag> getHashtags() {
+        return hashtags;
+    }
+
+    public Collection<Comment> getComments() {
+        return comments;
     }
 
     public Collection<String> getSteps() {
