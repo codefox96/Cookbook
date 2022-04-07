@@ -14,8 +14,10 @@ public class IngredStorage {
         this.recipeRepo = recipeRepo;
     }
 
-    public void saveIngred(Ingredient x){
-        ingredRepo.save(x);
+    public void saveIngred(Ingredient...ingredients){
+        for(Ingredient x:ingredients){
+            ingredRepo.save(x);
+        }
     }
 
 

@@ -13,7 +13,7 @@ public class Recipe {
     String imgUrl;
     boolean isVegan;
     boolean isVegetarian;
-    @ManyToMany(mappedBy = "recipes")
+    @ManyToMany
     Collection<Ingredient> ingredients;
     @ManyToMany(mappedBy = "recipes")
     Collection<Hashtag> hashtags;
@@ -33,6 +33,12 @@ public class Recipe {
     public void addStep(String...step){
         for(String x:step){
             steps.add(x);
+        }
+    }
+
+    public void addHashtag(Hashtag...added){
+        for(Hashtag x:added){
+            hashtags.add(x);
         }
     }
 

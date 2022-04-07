@@ -1,5 +1,8 @@
 package com.RB.RecipeBuildr;
 
+import com.RB.RecipeBuildr.models.Hashtag;
+import com.RB.RecipeBuildr.models.Ingredient;
+import com.RB.RecipeBuildr.models.Recipe;
 import com.RB.RecipeBuildr.storage.HashtagStorage;
 import com.RB.RecipeBuildr.storage.IngredStorage;
 import com.RB.RecipeBuildr.storage.RecipeStorage;
@@ -20,6 +23,16 @@ public class Populator implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+        Ingredient artichoke = new Ingredient("Artichoke","artImg");
+        Ingredient carrot = new Ingredient("Carrot","carImg");
+        ingredStorage.saveIngred(artichoke,carrot);
+
+        Recipe artichokeSoup = new Recipe("Artichoke Soup",false,false,artichoke,carrot);
+        recipeStorage.saveRecipe(artichokeSoup);
+
+        Hashtag hashOne = new Hashtag("Wow!",artichokeSoup);
+        hashStorage.saveHashtag(hashOne);
 
     }
 }

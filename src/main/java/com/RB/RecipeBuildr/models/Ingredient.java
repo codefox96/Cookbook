@@ -14,7 +14,7 @@ public class Ingredient {
     Long id;
     String name;
     String imgUrl;
-    @ManyToMany
+    @ManyToMany(mappedBy = "ingredients")
     Collection<Recipe> recipes;
 
     public Ingredient(String name, String imgUrl) {
