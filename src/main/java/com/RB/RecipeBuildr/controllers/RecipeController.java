@@ -5,6 +5,7 @@ import com.RB.RecipeBuildr.storage.IngredStorage;
 import com.RB.RecipeBuildr.storage.RecipeStorage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -18,6 +19,15 @@ public class RecipeController {
         this.recipeStorage = recipeStorage;
         this.hashtagStorage = hashtagStorage;
     }
+
+    @RequestMapping("recipe/{id}")
+    public String findRecipe(Model model, @PathVariable Long id){
+        model.addAttribute(recipeStorage.findRecipe(id));
+        //give back hashtags and ingredients
+
+        return "Single-Recipe-Template";
+    }
+
 
     @RequestMapping("all-recipes")
     public String allRecipes(Model model){

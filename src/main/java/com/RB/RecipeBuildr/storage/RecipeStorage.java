@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class RecipeStorage {
@@ -21,6 +22,12 @@ public class RecipeStorage {
     public void saveRecipe(Recipe x){
         recipeRepo.save(x);
     }
+
+    public Optional<Recipe> findRecipe(Long id){
+        return recipeRepo.findById(id);
+    }
+
+    //Methods to find ingredients and hashtags
 
     public Iterable<Recipe> retrieveAll(){
         return recipeRepo.findAll();
