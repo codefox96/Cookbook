@@ -1,5 +1,7 @@
 package com.RB.RecipeBuildr.storage;
 
+import com.RB.RecipeBuildr.models.Hashtag;
+import com.RB.RecipeBuildr.models.Ingredient;
 import com.RB.RecipeBuildr.models.Recipe;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +29,13 @@ public class RecipeStorage {
         return recipeRepo.findById(id);
     }
 
-    //Methods to find ingredients and hashtags
+    public Iterable<Ingredient> findIngredients(Recipe x){
+        return x.getIngredients();
+    }
+
+    public Iterable<Hashtag> findHashtags(Recipe x){
+        return x.getHashtags();
+    }
 
     public Iterable<Recipe> retrieveAll(){
         return recipeRepo.findAll();

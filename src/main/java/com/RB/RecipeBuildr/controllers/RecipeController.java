@@ -1,5 +1,6 @@
 package com.RB.RecipeBuildr.controllers;
 
+import com.RB.RecipeBuildr.models.Recipe;
 import com.RB.RecipeBuildr.storage.HashtagStorage;
 import com.RB.RecipeBuildr.storage.IngredStorage;
 import com.RB.RecipeBuildr.storage.RecipeStorage;
@@ -7,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Optional;
 
 @Controller
 public class RecipeController {
@@ -20,30 +23,31 @@ public class RecipeController {
         this.hashtagStorage = hashtagStorage;
     }
 
+    @RequestMapping("all-recipes")
+    public String allRecipes(Model model){
+        model.addAttribute("allRecipes",recipeStorage.retrieveAll());
+        return "Main-Recipe-Template";
+    }
+
     @RequestMapping("recipe/{id}")
     public String findRecipe(Model model, @PathVariable Long id){
-        model.addAttribute(recipeStorage.findRecipe(id));
-        //give back hashtags and ingredients
+        Recipe found = recipeStorage.findRecipe(id).get();
+        model.addAttribute("recipe",found);
+        model.addAttribute("ingredients",found.getIngredients());
+        model.addAttribute("hashtags",found.getHashtags());
 
         return "Single-Recipe-Template";
     }
 
-
-    @RequestMapping("all-recipes")
-    public String allRecipes(Model model){
-        model.addAttribute(recipeStorage.retrieveAll());
-        return "Main-Recipe-Template";
-    }
-
-    @RequestMapping("vegan-recipies")
+    @RequestMapping("vegan-recipes")
     public String veganRecipes(Model model){
-        model.addAttribute(recipeStorage.retrieveVegan());
+        model.addAttribute("veganRecipes",recipeStorage.retrieveVegan());
         return "Vegan-Recipe-Template";
     }
 
     @RequestMapping("vegetarian-recipes")
     public String vegetRecipes(Model model){
-        model.addAttribute(recipeStorage.retrieveVeget());
+        model.addAttribute("vegetRecipes",recipeStorage.retrieveVeget());
         return "Veget-Recipe-Template";
     }
 }
