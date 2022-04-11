@@ -28,11 +28,13 @@ public class Populator implements CommandLineRunner {
         Ingredient carrot = new Ingredient("Carrot","carImg");
         ingredStorage.saveIngred(artichoke,carrot);
 
-        Recipe artichokeSoup = new Recipe("Artichoke Soup",false,false,artichoke,carrot);
+        Recipe artichokeSoup = new Recipe("Artichoke Soup", "Artichoke Soup", false, false, artichoke, carrot);
         recipeStorage.saveRecipe(artichokeSoup);
 
         Hashtag hashOne = new Hashtag("Wow!",artichokeSoup);
         hashStorage.saveHashtag(hashOne);
+
+        artichokeSoup.addHashtag(hashOne);
 
     }
 }

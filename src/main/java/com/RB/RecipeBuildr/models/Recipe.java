@@ -9,23 +9,28 @@ import java.util.List;
 public class Recipe {
     @Id
     @GeneratedValue
-    Long id;
-    String imgUrl;
-    boolean isVegan;
-    boolean isVegetarian;
+    private Long id;
+    private String name;
+    private String imgUrl;
+    private boolean isVegan;
+    private boolean isVegetarian;
     @ManyToMany
-    Collection<Ingredient> ingredients;
+    private Collection<Ingredient> ingredients;
     @ManyToMany(mappedBy = "recipes")
-    Collection<Hashtag> hashtags;
+    private Collection<Hashtag> hashtags;
     @Embedded
-    Collection<Comment> comments;
-    ArrayList<String> steps;
+    private Collection<Comment> comments;
+    private ArrayList<String> steps;
 
-    public Recipe(String imgUrl, boolean isVegan, boolean isVegetarian, Ingredient...ingredients) {
+    public Recipe(String name, String imgUrl, boolean isVegan, boolean isVegetarian, Ingredient... ingredients) {
+        this.name = name;
         this.imgUrl = imgUrl;
         this.isVegan = isVegan;
         this.isVegetarian = isVegetarian;
         this.ingredients = List.of(ingredients);
+        this.hashtags = new ArrayList<>();
+        this.comments = new ArrayList<>();
+        this.steps = new ArrayList<>();
     }
 
     public Recipe(){}
@@ -48,6 +53,10 @@ public class Recipe {
 
     public String getImgUrl() {
         return imgUrl;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public boolean isVegan() {

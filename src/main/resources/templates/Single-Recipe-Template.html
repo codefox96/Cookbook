@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-    <h1>Hello Slime!</h1>
+    <h1 th:text="${recipe.getName}">X</h1>
+
+    <!--  Picture,Hashtags,Steps  -->
+    <img src="${recipe.getImgUrl}" alt="picture of recipe">
+    <div class="tags">
+        <ul th:each="hashtag:${recipe.getHashtags}">
+            <p th:text="${hashtag.getName}"></p>
+        </ul>
+<!--    </div>-->
+<!--    <div class="steps">-->
+<!--        <ol th:each="step:${recipe.getSteps}">-->
+<!--            <h2 th:text="step">X</h2>-->
+<!--        </ol>-->
+<!--    </div>-->
 </body>
 </html>

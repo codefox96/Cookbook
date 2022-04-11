@@ -33,6 +33,8 @@ public class RecipeController {
     public String findRecipe(Model model, @PathVariable Long id){
         Recipe found = recipeStorage.findRecipe(id).get();
         model.addAttribute("recipe",found);
+
+        //These may not be needed
         model.addAttribute("ingredients",found.getIngredients());
         model.addAttribute("hashtags",found.getHashtags());
 
