@@ -12,13 +12,13 @@
     <img src="${recipe.getImgUrl}" alt="picture of recipe">
     <div class="tags">
         <ul th:each="hashtag:${recipe.getHashtags}">
-            <p th:text="${hashtag.getName}"></p>
+            <p th:text="${hashtag.getName}">X</p>
         </ul>
 <!--    </div>-->
 <!--    <div class="steps">-->
 <!--        <ol th:each="step:${recipe.getSteps}">-->
 <!--            <h2 th:text="step">X</h2>-->
 <!--        </ol>-->
-<!--    </div>-->
+<!--    </div>-->giot
 </body>
 </html>
