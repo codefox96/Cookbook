@@ -18,7 +18,7 @@ public class Recipe {
     private Collection<Ingredient> ingredients;
     @ManyToMany(mappedBy = "recipes")
     private Collection<Hashtag> hashtags;
-    @Embedded
+    @OneToMany
     private Collection<Comment> comments;
     private ArrayList<String> steps;
 
@@ -44,6 +44,12 @@ public class Recipe {
     public void addHashtag(Hashtag...added){
         for(Hashtag x:added){
             hashtags.add(x);
+        }
+    }
+
+    public void addComment(Comment...comment){
+        for(Comment x:comment){
+            comments.add(x);
         }
     }
 

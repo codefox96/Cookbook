@@ -1,29 +1,36 @@
 package com.RB.RecipeBuildr.models;
 
-import javax.persistence.Embeddable;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
 
-@Embeddable
+@Entity
 public class Comment {
     @Id
     @GeneratedValue
     Long id;
     String author;
     String comment;
-    Collection<Recipe> recipeComment;
+    @ManyToOne
+    Recipe recipe;
+//    Collection<Recipe> recipeComment;
 
-    public Comment(String comment, String author, Recipe...recipes){
+    public Comment(String comment, String author){
         this.author = author;
         this.comment = comment;
-        this.recipeComment = List.of(recipes);
     }
 
     public Comment(){}
 
     public String getComment() {
         return comment;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
     }
 }

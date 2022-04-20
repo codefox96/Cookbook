@@ -14,11 +14,16 @@
         <ul th:each="hashtag:${recipe.getHashtags}">
             <p th:text="${hashtag.getName}">X</p>
         </ul>
-<!--    </div>-->
-<!--    <div class="steps">-->
-<!--        <ol th:each="step:${recipe.getSteps}">-->
-<!--            <h2 th:text="step">X</h2>-->
-<!--        </ol>-->
-<!--    </div>-->giot
+    </div>
+    <div class="steps">
+        <ul th:each="step:${recipe.getSteps}">
+            <h2 th:text="${step}">X</h2>
+        </ul>
+    </div>
+    <div class="comments">
+        <ul th:each="comment:${recipe.getComments}">
+            <h2 th:text="${comment.getComment}">X</h2>
+        </ul>
+    </div>
 </body>
 </html>
