@@ -21,8 +21,10 @@ public class RecipeStorage {
         this.ingredRepo = ingredRepo;
     }
 
-    public void saveRecipe(Recipe x){
-        recipeRepo.save(x);
+    public void saveRecipe(Recipe...x){
+        for(Recipe group:x){
+            recipeRepo.save(group);
+        }
     }
 
     public Optional<Recipe> findRecipe(Long id){
