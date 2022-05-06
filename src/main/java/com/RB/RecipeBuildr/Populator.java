@@ -43,7 +43,19 @@ public class Populator implements CommandLineRunner {
         Ingredient bread = new Ingredient("Bread","");
         Ingredient oilV = new Ingredient("Vegetable Oil","");
         Ingredient classified = new Ingredient("*Classified*","");
-        ingredStorage.saveIngred(artichoke,carrot,chickenThigh,tomatoSauce,onion,potato,chipotle,arbol,cream,butter,egg,bread,mayo,oilV,classified);
+        Ingredient tomato = new Ingredient("Tomato","");
+        Ingredient groundChuck = new Ingredient("Ground Chuck","");
+        Ingredient beefBroth = new Ingredient("Beef Broth","");
+        Ingredient guajillo = new Ingredient("Guajillo Pepper","");
+        Ingredient worcestershire = new Ingredient("Worcestershire Sauce","");
+        Ingredient brownSugar = new Ingredient("Brown Sugar","");
+        Ingredient bbqSauce = new Ingredient("BBQ Sauce","");
+        Ingredient kidneyBeans = new Ingredient("Kidney Beans","");
+        Ingredient northBeans = new Ingredient("Great Northern Beans","");
+
+        ingredStorage.saveIngred(artichoke,carrot,chickenThigh,tomatoSauce,onion,potato,chipotle,arbol,cream,butter,egg,
+                bread,mayo,oilV,classified,tomato,groundChuck,beefBroth,guajillo,worcestershire,brownSugar,bbqSauce,
+                kidneyBeans,northBeans);
 
         Comment commentOne = new Comment("Blahblahblah","Jordan");
         commRepo.save(commentOne);
@@ -62,12 +74,17 @@ public class Populator implements CommandLineRunner {
                             "Break the yolk and spread it over the top of the egg","Top with another slice of bread and enjoy!");
         Recipe ribs = new Recipe("Jordan's Secret Ribs","",false,false,classified);
         ribs.addStep("Wash ribs and remove silver skin to prevent ribs from arching while cooking","Brine the ribs in *MIND YOUR BUSINESS* for at least *NOT YOUR CONCERN* hours","Place coals and *REDACTED* wood chunks in your grill.",
-                      "Remove *DON'T WORRY ABOUT IT* from your brine to place on top of thin spots of ribs to prevent dry out","Light grill and place ribs *DIRECTLY OVER THE FIRE WITH ALL VENTS OPEN* for *SOME* hours",
-                      "Remove from grill and *MIND YOUR DAMN BUSINESS!!! D:<*");
+                     "Remove *DON'T WORRY ABOUT IT* from your brine to place on top of thin spots of ribs to prevent dry out","Light grill and place ribs *DIRECTLY OVER THE FIRE WITH ALL VENTS OPEN* for *SOME* hours",
+                     "Remove from grill and *MIND YOUR DAMN BUSINESS!!! D:<*");
+        Recipe chili = new Recipe("First Try Chili","",false,false,groundChuck,butter,onion,tomato,beefBroth,guajillo,chipotle,arbol,worcestershire,brownSugar,bbqSauce,kidneyBeans,northBeans);
+        chili.addStep("Bring pot up to medium heat and coat the bottom with butter","Dice a large onion and toss it into the pot once the butter is melted and bubbling",
+                      "Once the onions turn translucent, add your ground chuck and seasonings of choice","Once the chuck is lightly browned, add canned tomatoes and stir","Once tomatoes are incorporated, pour in enough beef" +
+                      "broth to cover all of the beef","Add dried chiles, worcestershire sauce, sugar, and BBQ sauce; then stir","Put stove on low heat and let simmer for at least 3 hours","Skim any oil off the top of the chili");
+
 
         artichokeSoup.addComment(commentOne);
         artichokeSoup.addStep("Make","Eat");
-        recipeStorage.saveRecipe(artichokeSoup,tomatoChicken,eggSandwich,ribs);
+        recipeStorage.saveRecipe(artichokeSoup,tomatoChicken,eggSandwich,ribs,chili);
 
         Hashtag hashOne = new Hashtag("Wow!",artichokeSoup);
         hashStorage.saveHashtag(hashOne);
