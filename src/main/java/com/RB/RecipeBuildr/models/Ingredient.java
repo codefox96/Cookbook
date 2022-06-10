@@ -1,9 +1,6 @@
 package com.RB.RecipeBuildr.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -13,6 +10,7 @@ public class Ingredient {
     @GeneratedValue
     Long id;
     String name;
+    @Lob
     String imgUrl;
     @ManyToMany(mappedBy = "ingredients")
     Collection<Recipe> recipes;

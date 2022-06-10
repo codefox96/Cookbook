@@ -20,6 +20,7 @@ public class Recipe {
     private Collection<Hashtag> hashtags;
     @OneToMany
     private Collection<Comment> comments;
+    @Lob
     private ArrayList<String> steps;
 
     public Recipe(String name, String imgUrl, boolean isVegan, boolean isVegetarian, Ingredient... ingredients) {
