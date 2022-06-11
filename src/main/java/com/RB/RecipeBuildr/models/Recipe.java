@@ -54,6 +54,12 @@ public class Recipe {
         }
     }
 
+    public void addIngred(Ingredient...ingreds){
+        for(Ingredient x:ingreds){
+            ingredients.add(x);
+        }
+    }
+
     public Long getId() {
         return id;
     }

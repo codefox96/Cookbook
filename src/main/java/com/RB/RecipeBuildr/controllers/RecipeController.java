@@ -59,17 +59,25 @@ public class RecipeController {
     @RequestMapping("/new-ingred")
     public String addNewIngred(Model model){
 
-
         return "Add-Ingredient-Template";
     }
 
     @PostMapping("/add")
-    public String addIngred(Model model, @RequestParam String inName, @RequestParam String inPic){
+    public String addIngred(Model model, @RequestParam String inName, @RequestParam String inPic, @RequestParam String reName,
+                            @RequestParam String reImUrl,@RequestParam boolean isVegan,@RequestParam boolean isVeget,@RequestParam Ingredient...ingredients){
+
+        boolean ingredCheck = inName!=null && inPic!=null;
+//        boolean
+
         Ingredient x = new Ingredient(inName,inPic);
         ingredStorage.saveIngred(x);
 
+//        add request params for new recipe!
+
         return "Add-Ingredient-Template";
     }
+
+
 
 //    @PostMapping("/person")
 //    public String addPerson(Model model, @RequestParam String perName, @RequestParam int perAge, @RequestParam String perJob) { //indicates the argument should be retrieved from the model.
