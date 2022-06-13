@@ -2,6 +2,7 @@ package com.RB.RecipeBuildr.models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class Recipe {
         this.imgUrl = imgUrl;
         this.isVegan = isVegan;
         this.isVegetarian = isVegetarian;
-        this.ingredients = List.of(ingredients);
+        this.ingredients = new ArrayList<>(Arrays.asList(ingredients));
         this.hashtags = new ArrayList<>();
         this.comments = new ArrayList<>();
         this.steps = new ArrayList<>();
@@ -54,6 +55,7 @@ public class Recipe {
         }
     }
 
+//    Caused by: java.lang.UnsupportedOperationException: null
     public void addIngred(Ingredient...ingreds){
         for(Ingredient x:ingreds){
             ingredients.add(x);

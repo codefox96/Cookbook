@@ -84,7 +84,6 @@ public class Populator implements CommandLineRunner {
 
         artichokeSoup.addComment(commentOne);
         artichokeSoup.addStep("Make","Eat");
-        artichokeSoup.addIngred(kidneyBeans,northBeans);
         recipeStorage.saveRecipe(artichokeSoup,tomatoChicken,eggSandwich,ribs,chili);
 
         Hashtag hashOne = new Hashtag("Wow!",artichokeSoup);
