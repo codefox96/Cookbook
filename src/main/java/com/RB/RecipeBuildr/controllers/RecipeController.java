@@ -4,6 +4,7 @@ import com.RB.RecipeBuildr.models.Ingredient;
 import com.RB.RecipeBuildr.models.Recipe;
 import com.RB.RecipeBuildr.storage.HashtagStorage;
 import com.RB.RecipeBuildr.storage.IngredStorage;
+import com.RB.RecipeBuildr.storage.IngredientRepo;
 import com.RB.RecipeBuildr.storage.RecipeStorage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,7 @@ public class RecipeController {
     IngredStorage ingredStorage;
     RecipeStorage recipeStorage;
     HashtagStorage hashtagStorage;
+
 
     public RecipeController(IngredStorage ingredStorage, RecipeStorage recipeStorage, HashtagStorage hashtagStorage) {
         this.ingredStorage = ingredStorage;
@@ -57,36 +59,51 @@ public class RecipeController {
     }
 
     @RequestMapping("/new-ingred")
-    public String addNewIngred(Model model){
-
-        return "Add-Ingredient-Template";
-    }
-
-    @PostMapping("/add")
-    public String addIngred(Model model, @RequestParam String inName, @RequestParam String inPic, @RequestParam String reName,
-                            @RequestParam String reImUrl,@RequestParam boolean isVegan,@RequestParam boolean isVeget,@RequestParam Ingredient...ingredients){
-
-        boolean ingredCheck = inName!=null && inPic!=null;
-//        boolean
-
+    public String addNewIngred(Model model, @RequestParam String inName, @RequestParam String inPic){
         Ingredient x = new Ingredient(inName,inPic);
         ingredStorage.saveIngred(x);
-
-//        add request params for new recipe!
-
-        return "Add-Ingredient-Template";
+        return "Contribute";
     }
 
-
-
-//    @PostMapping("/person")
-//    public String addPerson(Model model, @RequestParam String perName, @RequestParam int perAge, @RequestParam String perJob) { //indicates the argument should be retrieved from the model.
-//        IdCard idCard = new IdCard(perJob);
-//        idCardRepo.save(idCard);
-//        Person x = new Person(perName,perAge,idCard);
-//        personRepo.createPerson(x);
-//
-//        model.addAttribute("people", personRepo.getAllPersons());
-//        return "result";
-//    }
+    @RequestMapping("/new-recipe")
+    public String addNewRecipe(@RequestParam String reName,@RequestParam String reImUrl,@RequestParam boolean isVegan,@RequestParam boolean isVeget,@RequestParam Ingredient...ingredients){
+        Recipe x = new Recipe(reName,reImUrl,isVegan,isVeget,ingredients);
+        recipeStorage.saveRecipe();
+        return "Contribute";
+    }
 }
+
+//    ,
+//    @PostMapping("/add")
+//    public String addIngred(){
+//
+//        boolean ingredCheck = inName!=null && inPic!=null;
+//        boolean recCheck = reName!=null && reImUrl!=null;
+//
+//        if(ingredCheck && !recCheck){
+//            Ingredient x = new Ingredient(inName,inPic);
+//            ingredStorage.saveIngred(x);
+//        }else if(!ingredCheck && recCheck){
+//            Recipe x = new Recipe(reName,reImUrl,isVegan,isVeget,ingredients);
+//            recipeStorage.saveRecipe(x);
+//        }
+//
+//
+//        Not saving ingredients
+//        Ingredient x = new Ingredient(inName,inPic);
+//        ingredStorage.saveIngred(x);
+//
+//
+//
+//
+////        add request params for new recipe!
+//
+//        return "Add-Ingredient-Template";
+//    }
+
+
+
+
+//
+
+
